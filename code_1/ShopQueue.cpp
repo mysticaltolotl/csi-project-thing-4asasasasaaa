@@ -44,7 +44,21 @@ CustomerOrder* ShopQueue::peek() {
  * 
  */
 void ShopQueue::enqueue(string name, int num_pancakes, int type_of_pancake) {
-   // TODO
+
+  	
+  	CustomerOrder* temp = {name, num_pancakes, type_of_pancake, nullptr};
+  
+  	if(isEmpty())
+    {
+      	queueEnd = temp;
+      	queueFront = temp;
+      	return;
+    }
+  	else
+    {
+      	queueEnd->next = temp;
+    }
+  	
 }
 
 void ShopQueue::dequeue() {
