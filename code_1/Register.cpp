@@ -7,7 +7,7 @@
 using namespace std;
 
 Register::Register(){
-
+   top = 0;
 }
 
 /*
@@ -15,7 +15,10 @@ Register::Register(){
  * @returns 
  */
 bool Register::isFull(){
-   // TODO
+   if(top == SIZE)
+   {
+      return true;
+   }
    return false;
 }
 
@@ -24,27 +27,48 @@ bool Register::isFull(){
  * @param money: the type of pancake's price times the quantity
  */
 void Register::push( int money ){
-   // TODO
+   if(isFull())
+   {
+      cout << "Stack overflow:" << endl;
+      return;
+   }
+   a[top] = money;
+   top++;
 }
 
 
 /*
- * Checks if stack is full. 
+ * Checks if stack is empty. 
  * @returns a bool
  */
 bool Register::isEmpty(){
-   // TODO
-   return true;
+   if(top == 0)
+   {
+      return true;
+   }
+   return false;
 }
 
 /*
  * Looping through the stack array to display amounts
  */
 void Register::disp(){
-   // TODO
+	int temp = SIZE - 1;
+  	cout << "top = [" << top << "]" << endl;
+  	while(temp >= 0)
+    {
+      cout << a[temp] << endl;
+      temp--;
+    }
+
 }
 
 int Register::pop(){
-   // TODO
-   return 0;
+   if(isempty())
+   {
+     cout << "Stack empty, cannot pop an item!" << endl;
+     return -1;
+   }
+   top--;
+   return top;
 }

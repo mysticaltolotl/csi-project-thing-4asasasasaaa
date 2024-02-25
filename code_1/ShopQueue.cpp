@@ -33,6 +33,11 @@ bool ShopQueue::isEmpty() {
  * @return A customer order
  */
 CustomerOrder* ShopQueue::peek() {
+   if(!isEmpty())
+   {
+     cout << "Queue empty, cannot peek!" << endl;
+     return nullptr;
+   }
    return queueFront;
 }
 
@@ -62,7 +67,20 @@ void ShopQueue::enqueue(string name, int num_pancakes, int type_of_pancake) {
 }
 
 void ShopQueue::dequeue() {
-   // TODO
+   if(!isEmpty())
+   {
+     	if(queueFront == queueEnd)
+        {
+          queueFront = nullptr;
+          queueEnd = nullptr;
+          return;
+        }
+     	
+  		queueFront = queueFront->next;
+   }
+   
+   cout << "Queue empty, cannot dequeue!" << endl;
+  
 }
 
 /**
@@ -70,8 +88,14 @@ void ShopQueue::dequeue() {
  * @returns The total number of elements
  */
 int ShopQueue::queueSize(){
-   // TODO
-   return 0;
+   CustomerOrder* temp = queueFront;
+   int counter = 0;
+   while(temp != queueEnd)
+   {
+     counter++;
+   	 temp = temp->next;
+   }
+   return counter;
 }
 
 /**
