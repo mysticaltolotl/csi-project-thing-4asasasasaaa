@@ -4,11 +4,15 @@
 using namespace std;
 
 ShopQueue::ShopQueue() {
-
+   queueFront = nullptr;
+   queueEnd = nullptr;
 }
 
 ShopQueue::~ShopQueue() {
-
+   while(!isEmpty())
+   {
+      dequeue();
+   }
 }
 
 /**
@@ -16,8 +20,12 @@ ShopQueue::~ShopQueue() {
  * @returns Whether its empty or not
  */ 
 bool ShopQueue::isEmpty() {
-   // TODO
-   return true;
+   if(queueEnd == nullptr)
+   {
+      return true;
+   }
+
+   return false;
 }
 
 /**
@@ -25,8 +33,7 @@ bool ShopQueue::isEmpty() {
  * @return A customer order
  */
 CustomerOrder* ShopQueue::peek() {
-   // TODO
-   return nullptr;
+   return queueFront;
 }
 
 /**
