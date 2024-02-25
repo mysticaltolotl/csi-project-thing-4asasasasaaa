@@ -9,9 +9,12 @@ ShopQueue::ShopQueue() {
 }
 
 ShopQueue::~ShopQueue() {
-   while(!isEmpty())
+    CustomerOrder* current = queueFront;
+   while(queueFront != nullptr)
    {
-      dequeue();
+      current = queueFront;
+      queueFront = queueFront->next;
+      delete current;
    }
 }
 

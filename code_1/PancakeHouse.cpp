@@ -18,14 +18,18 @@ int const PancakeHouse::pancake_types[] = {1, 2, 5, 3, 7};
  * Constructor for the Pancake House
  */
 PancakeHouse::PancakeHouse() {
-
+	pancakesCooked = 0;
+    profit = 0;
+    cashRegister = new Register();
+    shopQueue = new ShopQueue();
 }
 
 /**
  * Destructor for the pancake house. Removes the register and shopQueue.
  */
 PancakeHouse::~PancakeHouse(){
-
+    delete cashRegister;
+    delete shopQueue;
 }
 
 /**
@@ -59,7 +63,7 @@ int PancakeHouse::getProfit(){
  * @param type_of_pancakes The type of pancake to be cooked (i.e., the 'price' of the pancake). There are 5 types, anything outside of the range 1-5 should be rejected.
  */
 void PancakeHouse::addOrder(string name, int number_of_pancakes, int type_of_pancakes) {
-    // TODO
+    enqueue(name, number_of_pancakes, type_of_pancakes);
 }
 
 /**
@@ -68,7 +72,7 @@ void PancakeHouse::addOrder(string name, int number_of_pancakes, int type_of_pan
  * 
  */
 void PancakeHouse::cookPancakes() {
-    // TODO
+    
 }
 
 /*
