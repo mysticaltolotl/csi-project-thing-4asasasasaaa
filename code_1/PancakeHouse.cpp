@@ -72,7 +72,11 @@ void PancakeHouse::addOrder(string name, int number_of_pancakes, int type_of_pan
  * 
  */
 void PancakeHouse::cookPancakes() {
-    
+    CustomerOrder* temp = shopQueue.peek();
+    shopQueue.pop();
+  	int tempPrice = (temp->number_of_pancakes) * (pancake_types[temp->type_of_pancakes]);
+  	pancakesCooked++;
+  	profit += tempPrice;
 }
 
 /*
