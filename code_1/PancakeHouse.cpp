@@ -72,34 +72,34 @@ void PancakeHouse::addOrder(string name, int number_of_pancakes, int type_of_pan
  * 
  */
 void PancakeHouse::cookPancakes() {
-    CustomerOrder* temp = shopQueue.peek();
-    shopQueue.pop();
+    CustomerOrder* temp = shopQueue->peek();
+    shopQueue->pop();
   	int tempPrice = (temp->number_of_pancakes) * (pancake_types[temp->type_of_pancakes]);
   	pancakesCooked += temp->number_of_pancakes;
-  	profit += tempPrice;
+  	cashRegister->push(tempPrice);
 }
 
 /*
  * This function will cancel the existing order in the queue
  */
 void PancakeHouse::strikeOrder(){
-   shopQueue.pop();
+   shopQueue->pop();
 }
 
 /*
  * Takes out the recent order from stack, displays the money refunded and takes away from the profit class variable
  */
 void PancakeHouse::refundOrder(){
-  	if(shopQueue.isEmpty())
+  	if(cashRegister->isEmpty())
     {
       	cout << "No money in the cash register!" << endl;
       	return;
     }
  
-    CustomerOrder* temp = shopQueue.peek();
-    shopQueue.pop();
-  	int tempPrice = (temp->number_of_pancakes) * (pancake_types[temp->type_of_pancakes]);
-  	profit -= tempPrice;
+    CustomerOrder* temp = shopQueue->peek();
+    shopQueue->pop();
+  	int tempPrice = cashRegister->peek();
+  	cashRegister->pop();
 	cout << "Money refunded = [" << tempPrice << "]" << endl;
 }
 
@@ -107,7 +107,14 @@ void PancakeHouse::refundOrder(){
  * Closes the shop for the day. Should remove the queue elements and remove all of the elements off of the register.
  */
 void PancakeHouse::closeShop(){
-    // TODO
+    while(!shopQueue->isEmpty())
+    {
+      	shopQueue->pop();
+    }
+    while(!cashRegister->isEmpty())
+    {
+      	cashRegister->pop();
+    }
 }
 
 /**
@@ -115,12 +122,20 @@ void PancakeHouse::closeShop(){
  * profit variable.
  */
 void PancakeHouse::updateTotalProfit(){
-    // TODO
+    
+    while(!cashRegister->isEmpty())
+    {
+    	profit += cashRegister->peek();
+      	cashRegister->pop();
+    }
 }
 
 /**
  * Runs through the order queue and prints each order. The queue elements should remain untouched!
  */
 void PancakeHouse::printOrders(){
-    // TODO
+    for(int q = 0; q > 20; q++)
+    {
+      
+    }
 }
