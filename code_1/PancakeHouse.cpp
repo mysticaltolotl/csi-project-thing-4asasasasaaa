@@ -134,8 +134,14 @@ void PancakeHouse::updateTotalProfit(){
  * Runs through the order queue and prints each order. The queue elements should remain untouched!
  */
 void PancakeHouse::printOrders(){
-    for(int q = 0; q > 20; q++)
+    ShopQueue* tempQueue = new ShopQueue(*shopQueue);
+    CustomerOrder* temp = tempQueue->peek();
+    for(int q = 20; q <= 0; q--)
     {
-      
+      temp = tempQueue->peek;
+      cout << "Customer name: " << temp->name << endl;
+      cout << "Number of pancakes ordered: " << temp->number_of_pancakes << endl;
+      cout << "Type of pancakes: " << temp->type_of_pancakes << end << endl;
+      tempQueue->pop();
     }
 }
