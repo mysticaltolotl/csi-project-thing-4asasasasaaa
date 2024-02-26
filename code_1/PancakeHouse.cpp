@@ -75,7 +75,7 @@ void PancakeHouse::cookPancakes() {
     CustomerOrder* temp = shopQueue.peek();
     shopQueue.pop();
   	int tempPrice = (temp->number_of_pancakes) * (pancake_types[temp->type_of_pancakes]);
-  	pancakesCooked++;
+  	pancakesCooked += temp->number_of_pancakes;
   	profit += tempPrice;
 }
 
@@ -83,14 +83,24 @@ void PancakeHouse::cookPancakes() {
  * This function will cancel the existing order in the queue
  */
 void PancakeHouse::strikeOrder(){
-    // TODO
+   shopQueue.pop();
 }
 
 /*
  * Takes out the recent order from stack, displays the money refunded and takes away from the profit class variable
  */
 void PancakeHouse::refundOrder(){
-    // TODO
+  	if(shopQueue.isEmpty())
+    {
+      	cout << "No money in the cash register!" << endl;
+      	return;
+    }
+ 
+    CustomerOrder* temp = shopQueue.peek();
+    shopQueue.pop();
+  	int tempPrice = (temp->number_of_pancakes) * (pancake_types[temp->type_of_pancakes]);
+  	profit -= tempPrice;
+	cout << "Money refunded = [" << tempPrice << "]" << endl;
 }
 
 /**
